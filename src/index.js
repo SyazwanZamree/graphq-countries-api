@@ -1,11 +1,26 @@
-import { createServer } from 'http';
-import app from './app';
+import { GraphQLServer } from 'graphql-yoga';
 
-const port = process.env.PORT || 3000;
+import resolvers from './resolvers/countryResolvers';
+import typeDefs from './schemas/countryType';
+// import models from './database/models/CountryModel';
+//
+// const typeDefs = `
+//   type Query {
+//     hello(name: String): String!
+//   }
+// `;
+//
+// const resolvers = {
+//   Query: {
+//     hello: (_, { name }) => `Hello ${name || 'World XXXX'}`,
+//   },
+// };
 
-createServer((request, response) => response.end(app()))
-  .listen(port, () => process.stdout.write(`Running on :${port}\n`));
+const gqlserver = new GraphQLServer({
+  typeDefs,
+  resolvers,
+});
 
-if (module.hot) {
-  module.hot.accept('./app');
-}
+gqlserver.start();
+
+export default gqlserver;
