@@ -1,11 +1,11 @@
-import { createServer } from 'http';
-import app from './app';
+import { GraphQLServer } from 'graphql-yoga';
 
-const port = process.env.PORT || 3000;
+import resolvers from './resolvers/countryResolvers';
+import typeDefs from './schemas/countryType';
 
-createServer((request, response) => response.end(app()))
-  .listen(port, () => process.stdout.write(`Running on :${port}\n`));
+const gqlserver = new GraphQLServer({
+  typeDefs,
+  resolvers,
+});
 
-if (module.hot) {
-  module.hot.accept('./app');
-}
+gqlserver.start();
