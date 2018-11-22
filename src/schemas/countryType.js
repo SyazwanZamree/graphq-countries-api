@@ -1,6 +1,5 @@
 export default `
   type Query {
-    hello(name: String): String!
     getAllCountries: [Country]
     getCountry: Country
     searchCountries: [Country]
