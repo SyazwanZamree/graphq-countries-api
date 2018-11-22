@@ -23,8 +23,8 @@ gqlserver.start(port, () => {
   mongoose.Promise = Promise;
   mongoose.connect(db, { useNewUrlParser: true });
 
-  console.log('Welcome to Grouver GraphQL API');
-  console.log(`For more info go to http://127.0.0.1:${port}/`);
+  console.log('Welcome to GraphQL Countries API');
+  console.log(`Go to http://127.0.0.1:${port}/`);
   console.log('==========================================');
   console.log(`Port: ${port}`);
   console.log(`Environment: ${env}`);
